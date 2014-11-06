@@ -2,8 +2,8 @@
 zabbix_server_name: zabbix.silpion.de
 zabbix_server_ip: 85.182.255.130
 
-customer_name: projektwerk
-customer_key: 380c94ffdc0da3bbdd855579d1ad5201
+zabbix_customer_name: projektwerk
+zabbix_customer_key: 380c94ffdc0da3bbdd855579d1ad5201
 
 zabbix_version: 2.4
 
