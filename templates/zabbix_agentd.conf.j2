@@ -134,7 +134,7 @@ ServerActive={{ zabbix_server_ip }}
 # Default:
 # Hostname=
 
-# Hostname=system.hostname
+Hostname={{ ansible_fqdn }}
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined. Ignored if Hostname is defined.
@@ -142,7 +142,7 @@ ServerActive={{ zabbix_server_ip }}
 #
 # Mandatory: no
 # Default:
-HostnameItem={{ ansible_fqdn }}
+#HostnameItem={{ ansible_fqdn }}
 
 ### Option: HostMetadata
 #	Optional parameter that defines host metadata.

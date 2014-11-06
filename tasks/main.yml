@@ -1,37 +1,44 @@
 ---
 - name: Install Zabbix repo in Redhat derivatives
   tags: zabbix_client
-  yum: name=http://repo.zabbix.com/zabbix/{{ zabbix_version }}/rhel/{{ centos_version }}/{{ centos_arch }}/{{ zabbix_reponame_centos }} state=present
   when: ansible_os_family == 'RedHat'
+  yum:
+    state=present
+    name=http://repo.zabbix.com/zabbix/{{ zabbix_version }}/rhel/{{ centos_version }}/{{ centos_arch }}/{{ zabbix_reponame_centos }}
 
 - name: Install the zabbix-agent package in Redhat derivatives
   tags: zabbix_client
-  yum: name={{ item }} state=installed
-  with_items: zabbix_agent_pkgs
   when: ansible_os_family == 'RedHat'
+  with_items: zabbix_agent_pkgs
+  yum:
+    state=installed
+    name={{ item }}
 
 - name: Install Zabbix repo in Debian derivatives
   tags: zabbix_client
-  command: "{{ item }}"
+  when: ansible_os_family == 'Debian'
   with_items:
     - wget http://repo.zabbix.com/zabbix/{{ zabbix_version }}/{{ debian_os_type }}/pool/main/z/zabbix-release/{{ zabbix_reponame_debian }}
     - dpkg -i {{ zabbix_reponame_debian }}
-  when: ansible_os_family == 'Debian'
+  command: "{{ item }}"
 
 - name: Install the zabbix-agent package in Debian derivatives
   tags: zabbix_client
-  apt: name={{ item }} state=installed update_cache=yes
-  with_items: zabbix_agent_pkgs
   when: ansible_os_family == 'Debian'
+  with_items: zabbix_agent_pkgs
+  apt:
+    state=installed
+    name={{ item }}
+    update_cache=yes
+    cache_valid_time=3600
 
 - name: Install zabbix_agent.conf template
   tags: zabbix_client
+  notify: service restart zabbix-agent
   template:
     src=zabbix_agentd.conf.j2
     dest=/etc/zabbix/zabbix_agentd.conf
     mode=644
-  notify:
-    - restart zabbix-agent
 
 - name: Create mysql config directory
   tags: zabbix_client
@@ -53,4 +60,6 @@
 
 - name: Ensure zabbix-agent is running
   tags: zabbix_client
-  service: name=zabbix-agent state=started
+  service:
+    state=started
+    name=zabbix-agent
