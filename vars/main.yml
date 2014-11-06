@@ -1,2 +1,17 @@
 ---
-# vars file for ansible-silpion-zabbix-client
+zabbix_server_name: zabbix.silpion.de
+zabbix_server_ip: 85.182.255.130
+
+customer_name: projektwerk
+customer_key: 380c94ffdc0da3bbdd855579d1ad5201
+
+zabbix_version: 2.4
+
+centos_version: 6
+centos_arch: x86_64
+zabbix_reponame_centos: zabbix-release-2.4-1.el6.noarch.rpm
+
+debian_os_type: ubuntu # debian or ubuntu
+zabbix_reponame_debian: zabbix-release_2.4-1+{{ ansible_distribution_release }}_all.deb
+
+zabbix_agent_pkgs: zabbix-agent

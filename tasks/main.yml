@@ -1,2 +1,56 @@
 ---
-# tasks file for ansible-silpion-zabbix-client
+- name: Install Zabbix repo in Redhat derivatives
+  tags: zabbix_client
+  yum: name=http://repo.zabbix.com/zabbix/{{ zabbix_version }}/rhel/{{ centos_version }}/{{ centos_arch }}/{{ zabbix_reponame_centos }} state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Install the zabbix-agent package in Redhat derivatives
+  tags: zabbix_client
+  yum: name={{ item }} state=installed
+  with_items: zabbix_agent_pkgs
+  when: ansible_os_family == 'RedHat'
+
+- name: Install Zabbix repo in Debian derivatives
+  tags: zabbix_client
+  command: "{{ item }}"
+  with_items:
+    - wget http://repo.zabbix.com/zabbix/{{ zabbix_version }}/{{ debian_os_type }}/pool/main/z/zabbix-release/{{ zabbix_reponame_debian }}
+    - dpkg -i {{ zabbix_reponame_debian }}
+  when: ansible_os_family == 'Debian'
+
+- name: Install the zabbix-agent package in Debian derivatives
+  tags: zabbix_client
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items: zabbix_agent_pkgs
+  when: ansible_os_family == 'Debian'
+
+- name: Install zabbix_agent.conf template
+  tags: zabbix_client
+  template:
+    src=zabbix_agentd.conf.j2
+    dest=/etc/zabbix/zabbix_agentd.conf
+    mode=644
+  notify:
+    - restart zabbix-agent
+
+- name: Create mysql config directory
+  tags: zabbix_client
+  file:
+    dest=/var/lib/zabbix
+    mode=755
+    owner=root
+    group=root
+    state=directory
+
+- name: Install mysql config
+  tags: zabbix_client
+  copy:
+    src=.my.cnf
+    dest=/var/lib/zabbix/.my.cnf
+    owner=root
+    group=root
+    mode=644
+
+- name: Ensure zabbix-agent is running
+  tags: zabbix_client
+  service: name=zabbix-agent state=started
