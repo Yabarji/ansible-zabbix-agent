@@ -1,3 +1,8 @@
+# 0.3.0
+
+Mark Kusch (1):
+      Provide more variables to better control installation of zabbix agent
+
 # 0.2.1/0.2.2
 
 Mark Kusch (2):
