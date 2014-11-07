@@ -1,0 +1,20 @@
+---
+- name: Install Zabbix repo
+  tags: zabbix_client
+  template:
+    src=zabbix.list.j2
+    dest=/etc/apt/sources.list.d/zabbix.list
+    owner=0
+    group=0
+    mode=0644
+
+- name: Install Zabbix repo GPG key
+  tags: zabbix_client
+  apt_key:
+    state=present
+    url={{ zabbix_repo_home }}/zabbix-official-repo.key
+
+- name: Update apt cache
+  tags: zabbix_client
+  apt:
+    update_cache=yes

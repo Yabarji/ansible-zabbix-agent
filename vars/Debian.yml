@@ -1,0 +1,11 @@
+---
+zabbix_agent_package_list:
+  - zabbix-agent
+
+zabbix_reponame: zabbix-release_{{ zabbix_version }}-1+{{ ansible_distribution_release }}_all.deb
+
+zabbix_repo_home: http://repo.zabbix.com
+zabbix_repo_url: "{{ zabbix_repo_home }}/zabbix"
+zabbix_repo_gpg_key_shasum:
+
+zabbix_mysql_defaults_file: /etc/mysql/debian.cnf

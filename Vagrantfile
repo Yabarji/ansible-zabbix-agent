@@ -7,16 +7,16 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
   config.vm.box = 'ubuntu/trusty64'
 
-  config.vm.define :ansiblesilpion-zabbix-clienttest do |d|
+  config.vm.define :ansible_zabbix_clienttest do |d|
 
-    d.vm.hostname = 'ansiblesilpion-zabbix-clienttest'
+    d.vm.hostname = 'ansible-zabbix-clienttest'
     d.vm.synced_folder '.', '/vagrant', id: 'vagrant-root', disabled: true
 
     d.vm.provision :ansible do |ansible|
       ansible.playbook = 'tests/playbook.yml'
       ansible.tags = ENV['ANSIBLE_TAGS']
       ansible.groups = {
-        'vagrant' => ['ansiblesilpion-zabbix-clienttest']
+        'vagrant' => ['ansible_zabbix_clienttest']
       }
       ansible.limit = 'vagrant'
 
@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
     d.vm.provider :virtualbox do |v|
       v.customize 'pre-boot', ['modifyvm', :id, '--nictype1', 'virtio']
-      v.customize [ 'modifyvm', :id, '--name', 'ansiblesilpion-zabbix-clienttest', '--memory', '512', '--cpus', '1' ]
+      v.customize [ 'modifyvm', :id, '--name', 'ansible-zabbix-clienttest', '--memory', '512', '--cpus', '1' ]
     end
 
   end
