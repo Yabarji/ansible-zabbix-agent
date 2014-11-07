@@ -33,6 +33,19 @@
   action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
 
 
+- name: Install required directories
+  tags: zabbix_client
+  with_items:
+    - zabbix_log_directory
+    - zabbix_run_directory
+  file:
+    state=directory
+    dest={{ item }}
+    owner={{ zabbix_user_name }}
+    group={{ zabbix_user_group }}
+    mode=0755
+
+
 - name: Install Zabbix configuration
   tags: zabbix_client
   notify: service restart zabbix-agent

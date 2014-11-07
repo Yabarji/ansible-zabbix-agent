@@ -3,6 +3,9 @@ zabbix_version: 2.4
 
 zabbix_service: zabbix-agent
 
+zabbix_user_name: zabbix
+zabbix_user_group: zabbix
+
 zabbix_conf_dir: /etc/zabbix
 zabbix_conf_file: "{{ zabbix_conf_dir }}/zabbix_agentd.conf"
 zabbix_conf_include_dir: "{{ zabbix_conf_dir }}/zabbix_agentd.d"
