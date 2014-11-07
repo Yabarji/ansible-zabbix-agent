@@ -1,7 +1,6 @@
 ---
-zabbix_server_name: zabbix.silpion.de
-zabbix_server_ip: 85.182.255.130
-
+zabbix_server_name: ""
+zabbix_server_ip: ""
 zabbix_customer_name: ""
 zabbix_customer_hash: ""
 

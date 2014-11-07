@@ -1,3 +1,8 @@
+# 0.3.2
+
+Mark Kusch (1):
+      Ensure all required directories are getting installed
+
 # 0.3.1
 
 Mark Kusch (1):

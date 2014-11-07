@@ -9,6 +9,8 @@
   tags: zabbix_client
   assert:
     that:
+      - zabbix_server_name not in (None, "")
+      - zabbix_server_ip not in (None, "")
       - zabbix_customer_name not in (None, "")
       - zabbix_customer_hash not in (None, "")
 

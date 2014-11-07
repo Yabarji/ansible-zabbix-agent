@@ -1,32 +1,30 @@
 # ansible-silpion-zabbix-client
 
-Description...
+Install/configure zabbix agent
 
 ## Requirements
 
-Requirements...
+None.
 
 ## Role Variables
 
-* ``variable_name``: Variable description (<!variable type>, default: ``variable default value``)
-
-### complex_variable_name
-
-Complex variable documentation...
-
-### another_complex_variable_name
-
-Complex variable documentation...
+* ``zabbix_server_name``: Configure Zabbix server name (string, default: ``""``, **mandatory**)
+* ``zabbix_server_ip``: Configure Zabbix server name (string, default: ``""``, **mandatory**)
+* ``zabbix_customer_name``: Configure Zabbix customer name (string, default: ``""``, **mandatory**)
+* ``zabbix_customer_hash``: Configure Zabbix customer authentication hash (string, default: ``""``, **mandatory**)
+* ``zabbix_install_mysql``: Configure to manage MySQL monitoring with Zabbix (boolean, default: ``false``)
+* ``zabbix_log_directory``: Configure Zabbix log directory (string, default: ``/var/log/zabbix``)
+* ``zabbix_run_directory``: Configure Zabbix run directory (string, default: ``/var/run/zabbix``)
 
 ## Dependencies
 
-Dependencies...
+None.
 
 ## Example Playbook
 
     - hosts: all
       roles:
-         - { role: ansible-silpion-zabbix-client }
+         - { role: ansible-zabbix-client }
 
 ## License
 
@@ -59,7 +57,8 @@ Ruby with rake and bundler available.
 
 ## Author information
 
-<!Author Name> @<!email_prefix> <!email_suffix>
+* Ruslan Tumarkin @ruslan.tumarkin silpion.de
+* Mark Kusch @mark.kusch silpion.de
 
 
 <!-- vim: set nofen ts=4 sw=4 et: -->
