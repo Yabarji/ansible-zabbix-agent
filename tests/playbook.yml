@@ -2,5 +2,9 @@
 - hosts: all
   sudo: yes
   sudo_user: root
+  vars:
+    zabbix_customer_name: foobar
+    zabbix_customer_hash: 14758f1afd44c09b7992073ccf00b43d
+    zabbix_install_mysql: true
   roles:
-    - { role: ansible-silpion-zabbix-client }
+    - { role: ansible-zabbix-client }

@@ -1,17 +1,8 @@
 ---
-zabbix_server_name: zabbix.silpion.de
-zabbix_server_ip: 85.182.255.130
-
-zabbix_customer_name: projektwerk
-zabbix_customer_key: 380c94ffdc0da3bbdd855579d1ad5201
-
 zabbix_version: 2.4
 
-centos_version: 6
-centos_arch: x86_64
-zabbix_reponame_centos: zabbix-release-2.4-1.el6.noarch.rpm
+zabbix_service: zabbix-agent
 
-debian_os_type: ubuntu # debian or ubuntu
-zabbix_reponame_debian: zabbix-release_2.4-1+{{ ansible_distribution_release }}_all.deb
-
-zabbix_agent_pkgs: zabbix-agent
+zabbix_conf_dir: /etc/zabbix
+zabbix_conf_file: "{{ zabbix_conf_dir }}/zabbix_agentd.conf"
+zabbix_conf_include_dir: "{{ zabbix_conf_dir }}/zabbix_agentd.d"

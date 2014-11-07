@@ -1,2 +1,8 @@
 ---
-# defaults file for ansible-silpion-zabbix-client
+zabbix_server_name: zabbix.silpion.de
+zabbix_server_ip: 85.182.255.130
+
+zabbix_customer_name: ""
+zabbix_customer_key: ""
+
+zabbix_install_mysql: false

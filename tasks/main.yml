@@ -1,65 +1,55 @@
 ---
-- name: Install Zabbix repo in Redhat derivatives
+- name: Assert supported platform
+  tags: zabbix_client
+  assert:
+    that:
+      - ansible_os_family in ['Debian', 'RedHat']
+
+- name: Assert required vars
+  tags: zabbix_client
+  assert:
+    that:
+      - zabbix_customer_name not in (None, "")
+      - zabbix_customer_hash not in (None, "")
+
+
+- name: Include OS specific variables
+  tags: zabbix_client
+  include_vars: "{{ ansible_os_family }}.yml"
+
+
+- include: RedHat.yml
   tags: zabbix_client
   when: ansible_os_family == 'RedHat'
-  yum:
-    state=present
-    name=http://repo.zabbix.com/zabbix/{{ zabbix_version }}/rhel/{{ centos_version }}/{{ centos_arch }}/{{ zabbix_reponame_centos }}
 
-- name: Install the zabbix-agent package in Redhat derivatives
-  tags: zabbix_client
-  when: ansible_os_family == 'RedHat'
-  with_items: zabbix_agent_pkgs
-  yum:
-    state=installed
-    name={{ item }}
-
-- name: Install Zabbix repo in Debian derivatives
+- include: Debian.yml
   tags: zabbix_client
   when: ansible_os_family == 'Debian'
-  with_items:
-    - wget http://repo.zabbix.com/zabbix/{{ zabbix_version }}/{{ debian_os_type }}/pool/main/z/zabbix-release/{{ zabbix_reponame_debian }}
-    - dpkg -i {{ zabbix_reponame_debian }}
-  command: "{{ item }}"
 
-- name: Install the zabbix-agent package in Debian derivatives
+
+- name: Install Zabbix agent
   tags: zabbix_client
-  when: ansible_os_family == 'Debian'
-  with_items: zabbix_agent_pkgs
-  apt:
-    state=installed
-    name={{ item }}
-    update_cache=yes
-    cache_valid_time=3600
+  with_items: zabbix_agent_package_list
+  action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
 
-- name: Install zabbix_agent.conf template
+
+- name: Install Zabbix configuration
   tags: zabbix_client
   notify: service restart zabbix-agent
   template:
     src=zabbix_agentd.conf.j2
-    dest=/etc/zabbix/zabbix_agentd.conf
+    dest={{ zabbix_conf_file }}
+    owner=0
+    group=0
     mode=644
 
-- name: Create mysql config directory
-  tags: zabbix_client
-  file:
-    dest=/var/lib/zabbix
-    mode=755
-    owner=root
-    group=root
-    state=directory
 
-- name: Install mysql config
-  tags: zabbix_client
-  copy:
-    src=.my.cnf
-    dest=/var/lib/zabbix/.my.cnf
-    owner=root
-    group=root
-    mode=644
+- include: mysql.yml
+  when: zabbix_install_mysql
+
 
 - name: Ensure zabbix-agent is running
   tags: zabbix_client
   service:
     state=started
-    name=zabbix-agent
+    name={{ zabbix_service }}
