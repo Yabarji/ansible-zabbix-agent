@@ -1,3 +1,8 @@
+# 0.2.0
+
+Mark Kusch (1):
+      Make a re-usable role for zabbix-agent
+
 # 0.1.1
 
 Mark Kusch (1):
