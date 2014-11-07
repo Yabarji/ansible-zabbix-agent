@@ -36,8 +36,9 @@
 - name: Install required directories
   tags: zabbix_client
   with_items:
-    - zabbix_log_directory
-    - zabbix_run_directory
+    - "{{ zabbix_log_directory }}"
+    - "{{ zabbix_run_directory }}"
+    - "{{ zabbix_conf_include_directory }}"
   file:
     state=directory
     dest={{ item }}
