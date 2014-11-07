@@ -1,3 +1,8 @@
+# 0.3.1
+
+Mark Kusch (1):
+      Fix zabbix customer key/hash variable names
+
 # 0.3.0
 
 Mark Kusch (1):
