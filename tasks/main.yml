@@ -9,6 +9,8 @@
   tags: zabbix_client
   assert:
     that:
+      - zabbix_server_name not in (None, "")
+      - zabbix_server_ip not in (None, "")
       - zabbix_customer_name not in (None, "")
       - zabbix_customer_hash not in (None, "")
 
@@ -36,8 +38,9 @@
 - name: Install required directories
   tags: zabbix_client
   with_items:
-    - zabbix_log_directory
-    - zabbix_run_directory
+    - "{{ zabbix_log_directory }}"
+    - "{{ zabbix_run_directory }}"
+    - "{{ zabbix_conf_include_directory }}"
   file:
     state=directory
     dest={{ item }}

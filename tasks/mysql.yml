@@ -4,7 +4,7 @@
   tags: zabbix_client
   template:
     src=userparameter_mysql.conf.j2
-    dest={{ zabbix_conf_include_dir }}/userparameter_mysql.conf
+    dest={{ zabbix_conf_include_directory }}/userparameter_mysql.conf
     owner=0
     group=0
     mode=0644
