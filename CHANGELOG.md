@@ -1,7 +1,8 @@
-# 0.2.1
+# 0.2.1/0.2.2
 
-Mark Kusch (1):
+Mark Kusch (2):
       zabbix-agent will not start if it cannot access configured log file directory
+      zabbix-agent will not start if there is no file .conf in Include directory
 
 # 0.2.0
 
