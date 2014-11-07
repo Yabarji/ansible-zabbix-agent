@@ -1,3 +1,8 @@
+# 0.2.1
+
+Mark Kusch (1):
+      zabbix-agent will not start if it cannot access configured log file directory
+
 # 0.2.0
 
 Mark Kusch (1):
