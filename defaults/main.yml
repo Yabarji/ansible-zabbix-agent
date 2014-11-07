@@ -6,3 +6,6 @@ zabbix_customer_name: ""
 zabbix_customer_key: ""
 
 zabbix_install_mysql: false
+
+zabbix_log_directory: /var/log/zabbix
+zabbix_run_directory: /var/run/zabbix
