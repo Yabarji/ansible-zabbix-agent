@@ -8,3 +8,16 @@
     owner=0
     group=0
     mode=0644
+
+- name: Fix file permissions on debian.cnf
+  tags: zabbix_client
+  file:
+    path=/etc/mysql/debian.cnf
+    mode=0640
+
+- name: Add zabbix user to the root group
+  tags: zabbix_client
+  user:
+    name=zabbix
+    groups=root
+    append=yes
