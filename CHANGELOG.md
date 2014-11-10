@@ -1,3 +1,13 @@
+# 0.3.4
+
+Mark Kusch (1):
+      Run apt update ONLY when changing repo data
+
+# 0.3.3
+
+Ruslan Tumarkin (1):
+      Allow Zabbix to monitor MySQL (Debian)
+
 # 0.3.2
 
 Mark Kusch (1):
