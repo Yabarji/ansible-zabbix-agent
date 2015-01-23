@@ -9,13 +9,13 @@
   tags: zabbix_agent
   assert:
     that:
-      - zabbix_server_name not in (None, "")
-      - zabbix_server_ip not in (None, "")
-      - zabbix_customer_name not in (None, "")
-      - zabbix_customer_hash not in (None, "")
+      - zabbix_agent_server_name not in (None, "")
+      - zabbix_agent_server_ip not in (None, "")
+      - zabbix_agent_customer_name not in (None, "")
+      - zabbix_agent_customer_hash not in (None, "")
 
 
-- name: Include OS specific variables
+- name: Include OS specific vars
   tags: zabbix_agent
   include_vars: "{{ ansible_os_family }}.yml"
 
@@ -38,14 +38,14 @@
 - name: Install required directories
   tags: zabbix_agent
   with_items:
-    - "{{ zabbix_log_directory }}"
-    - "{{ zabbix_run_directory }}"
-    - "{{ zabbix_conf_include_directory }}"
+    - "{{ zabbix_agent_log_directory }}"
+    - "{{ zabbix_agent_run_directory }}"
+    - "{{ zabbix_agent_conf_directory }}"
   file:
     state=directory
     dest={{ item }}
-    owner={{ zabbix_user_name }}
-    group={{ zabbix_user_group }}
+    owner={{ zabbix_agent_user_name }}
+    group={{ zabbix_agent_user_group }}
     mode=0755
 
 
@@ -54,18 +54,20 @@
   notify: service restart zabbix-agent
   template:
     src=zabbix_agentd.conf.j2
-    dest={{ zabbix_conf_file }}
+    dest={{ zabbix_agent_conf_file }}
     owner=0
     group=0
     mode=644
 
 
 - include: mysql.yml
-  when: zabbix_install_mysql
+  tags: zabbix_agent
+  when: zabbix_agent_mysql_enable
 
 
-- name: Ensure zabbix-agent is running
+- name: Ensure zabbix-agent service
   tags: zabbix_agent
   service:
     state=started
-    name={{ zabbix_service }}
+    enabled=yes
+    name={{ zabbix_agent_service }}

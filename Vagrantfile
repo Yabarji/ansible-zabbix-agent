@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
       ansible.playbook = 'tests/playbook.yml'
       ansible.tags = ENV['ANSIBLE_TAGS']
       ansible.groups = {
-        'vagrant' => ['ansiblezabbixagentttest']
+        'vagrant' => ['ansiblezabbixagenttest']
       }
       ansible.limit = 'vagrant'
 
@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
     d.vm.provider :virtualbox do |v|
       v.customize 'pre-boot', ['modifyvm', :id, '--nictype1', 'virtio']
-      v.customize [ 'modifyvm', :id, '--name', 'ansiblezabbixagentttest', '--memory', '512', '--cpus', '1' ]
+      v.customize [ 'modifyvm', :id, '--name', 'ansiblezabbixagenttest', '--memory', '512', '--cpus', '1' ]
     end
 
   end

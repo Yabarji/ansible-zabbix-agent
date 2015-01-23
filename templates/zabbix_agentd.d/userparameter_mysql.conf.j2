@@ -1,0 +1,4 @@
+UserParameter=mysql.status[*],echo "show global status where Variable_name='$1';" | mysql --defaults-file={{ zabbix_agent_mysql_defaults_file }} -N | awk '{print $$2}'
+UserParameter=mysql.size[*],echo "select sum($(case "$3" in both|"") echo "data_length+index_length";; data|index) echo "$3_length";; free) echo "data_free";; esac)) from information_schema.tables$([[ "$1" = "all" || ! "$1" ]] || echo " where table_schema='$1'")$([[ "$2" =. "all" || ! "$2" ]] || echo "and table_name='$2'");" | mysql --defaults-file={{ zabbix_agent_mysql_defaults_file }} -N
+UserParameter=mysql.ping,mysqladmin --defaults-file={{ zabbix_agent_mysql_defaults_file }} ping | grep -c alive
+UserParameter=mysql.version,mysql --defaults-file={{ zabbix_agent_mysql_defaults_file }} -V
