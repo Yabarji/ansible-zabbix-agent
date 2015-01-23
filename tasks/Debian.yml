@@ -1,7 +1,7 @@
 ---
 - name: Install Zabbix repo
   register: zabbix_install_zabbix_repo
-  tags: zabbix_client
+  tags: zabbix_agent
   template:
     src=zabbix.list.j2
     dest=/etc/apt/sources.list.d/zabbix.list
@@ -11,7 +11,7 @@
 
 - name: Install Zabbix repo GPG key
   register: zabbix_install_zabbix_repo_gpg_key
-  tags: zabbix_client
+  tags: zabbix_agent
   apt_key:
     state=present
     url={{ zabbix_repo_home }}/zabbix-official-repo.key
@@ -20,6 +20,6 @@
   when:
     - zabbix_install_zabbix_repo.changed
     - zabbix_install_zabbix_repo_gpg_key.changed
-  tags: zabbix_client
+  tags: zabbix_agent
   apt:
     update_cache=yes

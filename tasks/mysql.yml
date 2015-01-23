@@ -1,7 +1,7 @@
 ---
 - name: Install mysql config
   notify: service restart zabbix-agent
-  tags: zabbix_client
+  tags: zabbix_agent
   template:
     src=userparameter_mysql.conf.j2
     dest={{ zabbix_conf_include_directory }}/userparameter_mysql.conf
@@ -10,7 +10,7 @@
     mode=0644
 
 - name: Fix file permissions on debian.cnf
-  tags: zabbix_client
+  tags: zabbix_agent
   file:
     path=/etc/mysql/debian.cnf
     owner=0

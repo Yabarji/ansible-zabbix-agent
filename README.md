@@ -1,4 +1,4 @@
-# ansible-silpion-zabbix-client
+# ansible-zabbix-agentt
 
 Install/configure zabbix agent
 
@@ -24,7 +24,7 @@ None.
 
     - hosts: all
       roles:
-         - { role: ansible-zabbix-client }
+         - { role: ansible-zabbix-agent }
 
 ## License
 

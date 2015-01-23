@@ -3,8 +3,9 @@
   sudo: yes
   sudo_user: root
   vars:
+    zabbix_server_name: localhost
+    zabbix_server_ip: 127.0.0.1
     zabbix_customer_name: foobar
     zabbix_customer_hash: 14758f1afd44c09b7992073ccf00b43d
-    zabbix_install_mysql: true
   roles:
-    - { role: ansible-zabbix-client }
+    - { role: ansible-zabbix-agent }
