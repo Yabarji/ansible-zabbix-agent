@@ -1,8 +1,8 @@
-PidFile={{ zabbix_run_directory }}/zabbix_agentd.pid
-LogFile={{ zabbix_log_directory }}/zabbix_agentd.log
+PidFile={{ zabbix_agent_run_directory }}/zabbix_agentd.pid
+LogFile={{ zabbix_agent_log_directory }}/zabbix_agentd.log
 LogFileSize=0
 Server=127.0.0.1
-ServerActive={{ zabbix_server_ip }}
+ServerActive={{ zabbix_agent_server_ip }}
 Hostname={{ ansible_fqdn }}
-HostMetadata={{ ansible_system }} {{ zabbix_customer_name }} {{ zabbix_customer_hash }}
-Include={{ zabbix_conf_include_directory }}/
+HostMetadata={{ ansible_system }} {{ zabbix_agent_customer_name }} {{ zabbix_agent_customer_hash }}
+Include={{ zabbix_agent_conf_directory }}/

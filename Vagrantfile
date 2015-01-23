@@ -7,9 +7,9 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
   config.vm.box = 'ubuntu/trusty64'
 
-  config.vm.define :ansible_zabbix_clienttest do |d|
+  config.vm.define :ansiblezabbixagenttest do |d|
 
-    d.vm.hostname = 'ansible-zabbix-clienttest'
+    d.vm.hostname = 'ansiblezabbixagenttest'
     d.vm.synced_folder '.', '/vagrant', id: 'vagrant-root', disabled: true
 
     d.vm.provision :ansible do |ansible|
@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
     d.vm.provider :virtualbox do |v|
       v.customize 'pre-boot', ['modifyvm', :id, '--nictype1', 'virtio']
-      v.customize [ 'modifyvm', :id, '--name', 'ansible-zabbix-clienttest', '--memory', '512', '--cpus', '1' ]
+      v.customize [ 'modifyvm', :id, '--name', 'ansiblezabbixagenttest', '--memory', '512', '--cpus', '1' ]
     end
 
   end
