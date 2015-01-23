@@ -1,4 +1,4 @@
-# ansible-zabbix-agentt
+# ansible-zabbix-agent
 
 Install/configure zabbix agent
 
