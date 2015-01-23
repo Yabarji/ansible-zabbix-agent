@@ -16,6 +16,7 @@
 
 - name: Install zabbix/mysql service user
   tags: zabbix_agent
+  no_log: true
   mysql_user:
     state=present
     host=localhost
