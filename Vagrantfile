@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
       ansible.playbook = 'tests/playbook.yml'
       ansible.tags = ENV['ANSIBLE_TAGS']
       ansible.groups = {
-        'vagrant' => ['ansible_zabbix_clienttest']
+        'vagrant' => ['ansiblezabbixagenttest']
       }
       ansible.limit = 'vagrant'
 
