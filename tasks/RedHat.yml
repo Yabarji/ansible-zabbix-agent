@@ -1,6 +1,7 @@
 ---
 - name: Install Zabbix repo
   tags: zabbix_agent
+  sudo: yes
   yum:
     state=present
     name=http://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/rhel/{{ zabbix_agent_centos_version }}/{{ zabbix_agent_centos_arch }}/{{ zabbix_agent_reponame }}

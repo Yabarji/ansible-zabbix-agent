@@ -31,12 +31,14 @@
 
 - name: Install Zabbix agent
   tags: zabbix_agent
+  sudo: yes
   with_items: zabbix_agent_package_list
   action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
 
 
 - name: Install required directories
   tags: zabbix_agent
+  sudo: yes
   with_items:
     - "{{ zabbix_agent_log_directory }}"
     - "{{ zabbix_agent_run_directory }}"
@@ -51,6 +53,7 @@
 
 - name: Install Zabbix configuration
   tags: zabbix_agent
+  sudo: yes
   notify: service restart zabbix-agent
   template:
     src=zabbix_agentd.conf.j2
@@ -67,6 +70,7 @@
 
 - name: Ensure zabbix-agent service
   tags: zabbix_agent
+  sudo: yes
   service:
     state=started
     enabled=yes

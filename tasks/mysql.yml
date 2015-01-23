@@ -10,12 +10,14 @@
 
 - name: Install Ansible MySQL dependencies
   tags: zabbix_agent
+  sudo: yes
   with_items: zabbix_agent_package_list_mysql
   action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
 
 
 - name: Install zabbix/mysql service user
   tags: zabbix_agent
+  sudo: yes
   no_log: true
   mysql_user:
     state=present
@@ -31,17 +33,19 @@
 
 - name: Install mysql defaults configuration
   tags: zabbix_agent
+  sudo: yes
   no_log: true
   template:
     src=mysql.cnf.j2
     dest={{ zabbix_agent_conf_dir }}/mysql.cnf
-    owner={{ zabbix_agent_user_name }}
+    owner=0
     group={{ zabbix_agent_user_group }}
-    mode=0600
+    mode=0640
 
 - name: Install mysql monitoring configuration
-  notify: service restart zabbix-agent
   tags: zabbix_agent
+  sudo: yes
+  notify: service restart zabbix-agent
   template:
     src=zabbix_agentd.d/userparameter_mysql.conf.j2
     dest={{ zabbix_agent_conf_directory }}/userparameter_mysql.conf

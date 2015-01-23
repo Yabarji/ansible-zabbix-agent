@@ -1,7 +1,5 @@
 ---
 - hosts: all
-  sudo: yes
-  sudo_user: root
   vars:
     zabbix_agent_server_name: localhost
     zabbix_agent_server_ip: 127.0.0.1
