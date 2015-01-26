@@ -1,10 +1,50 @@
 ---
-zabbix_server_name: ""
-zabbix_server_ip: ""
-zabbix_customer_name: ""
-zabbix_customer_hash: ""
+# Server name for the agent configuration where to push monitoring data to
+zabbix_agent_server_name: ""
+# Server IP for the agent configuration where to push monitoring data to
+zabbix_agent_server_ip: ""
+# Push monitoring data for "customer"/project
+zabbix_agent_customer_name: ""
+# "Customer"/project hash in Zabbix whom to push monitoring data for
+zabbix_agent_customer_hash: ""
 
-zabbix_install_mysql: false
+# Service user to run the zabbix agent service as
+zabbix_agent_user_name: zabbix
+zabbix_agent_user_group: zabbix
 
-zabbix_log_directory: /var/log/zabbix
-zabbix_run_directory: /var/run/zabbix
+# Allow to restart the zabbix agent service on configuration update
+zabbix_agent_allow_restart: true
+
+
+# Zabbix logging and runtime configuration
+zabbix_agent_log_directory: /var/log/zabbix
+zabbix_agent_run_directory: /var/run/zabbix
+
+
+# MySQL monitoring
+zabbix_agent_mysql_enable: false
+zabbix_agent_mysql_user: zabbix
+zabbix_agent_mysql_pass: ""
+
+zabbix_agent_mysql_login_host: 127.0.0.1
+zabbix_agent_mysql_login_port: 3306
+zabbix_agent_mysql_login_user: ""
+zabbix_agent_mysql_login_pass: ""
+
+
+# Rsyslog
+#   enable rsyslog configuration for zabbix
+zabbix_agent_syslog_enable: false
+
+#   allow to restart the rsyslog service on configuration update
+zabbix_agent_allow_restart_rsyslog: true
+
+# write syslog information from all SEVERITIES with syslog LEVEL
+#   {{ zabbix_agent_syslog_level }}
+#   := ('debug', 'info', 'notice', 'warning', 'err', 'crit', 'alert', 'emerg')
+# to file
+#   {{ zabbix_agent_syslog_zabbix_logile }}
+#   ... and alert on Syslog LEVEL
+
+zabbix_agent_syslog_level: warning
+zabbix_agent_syslog_zabbix_logfile: "/var/log/zabbix.log"

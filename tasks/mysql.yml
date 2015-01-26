@@ -1,18 +1,54 @@
 ---
-- name: Install mysql config
-  notify: service restart zabbix-agent
-  tags: zabbix_client
+- name: Assert on MySQL vars
+  tags: zabbix_agent
+  assert:
+    that:
+      - zabbix_agent_mysql_login_user not in (None, "")
+      - zabbix_agent_mysql_login_pass not in (None, "")
+      - zabbix_agent_mysql_pass not in (None, "")
+
+
+- name: Install Ansible MySQL dependencies
+  tags: zabbix_agent
+  sudo: yes
+  with_items: zabbix_agent_package_list_mysql
+  action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
+
+
+- name: Install zabbix/mysql service user
+  tags: zabbix_agent
+  sudo: yes
+  no_log: true
+  mysql_user:
+    state=present
+    host=localhost
+    priv='*.*:ALL'
+    name={{ zabbix_agent_mysql_user }}
+    password={{ zabbix_agent_mysql_pass }}
+    check_implicit_admin=yes
+    login_host={{ zabbix_agent_mysql_login_host }}
+    login_port={{ zabbix_agent_mysql_login_port }}
+    login_user={{ zabbix_agent_mysql_login_user }}
+    login_password={{ zabbix_agent_mysql_login_pass }}
+
+- name: Install mysql defaults configuration
+  tags: zabbix_agent
+  sudo: yes
+  no_log: true
   template:
-    src=userparameter_mysql.conf.j2
-    dest={{ zabbix_conf_include_directory }}/userparameter_mysql.conf
+    src=mysql.cnf.j2
+    dest={{ zabbix_agent_conf_dir }}/mysql.cnf
+    owner=0
+    group={{ zabbix_agent_user_group }}
+    mode=0640
+
+- name: Install mysql monitoring configuration
+  tags: zabbix_agent
+  sudo: yes
+  notify: service restart zabbix-agent
+  template:
+    src=zabbix_agentd.d/userparameter_mysql.conf.j2
+    dest={{ zabbix_agent_conf_directory }}/userparameter_mysql.conf
     owner=0
     group=0
     mode=0644
-
-- name: Fix file permissions on debian.cnf
-  tags: zabbix_client
-  file:
-    path=/etc/mysql/debian.cnf
-    owner=0
-    group=zabbix
-    mode=0640

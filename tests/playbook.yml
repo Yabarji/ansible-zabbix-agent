@@ -1,10 +1,14 @@
 ---
 - hosts: all
-  sudo: yes
-  sudo_user: root
   vars:
-    zabbix_customer_name: foobar
-    zabbix_customer_hash: 14758f1afd44c09b7992073ccf00b43d
-    zabbix_install_mysql: true
+    zabbix_agent_server_name: localhost
+    zabbix_agent_server_ip: 127.0.0.1
+    zabbix_agent_customer_name: foobar
+    zabbix_agent_customer_hash: 14758f1afd44c09b7992073ccf00b43d
+    zabbix_agent_mysql_enable: false
+    zabbix_agent_mysql_pass: S7xPEEKNPc3bwoQ/dpnOSokm2A
+    zabbix_agent_mysql_login_user: root
+    zabbix_agent_mysql_login_pass: whatever
+    zabbix_agent_syslog_enable: true
   roles:
-    - { role: ansible-zabbix-client }
+    - { role: ansible-zabbix-agent }

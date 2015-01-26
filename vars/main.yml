@@ -1,11 +1,24 @@
 ---
-zabbix_version: 2.4
+zabbix_agent_version: 2.4
 
-zabbix_service: zabbix-agent
+zabbix_agent_service: zabbix-agent
 
-zabbix_user_name: zabbix
-zabbix_user_group: zabbix
+zabbix_agent_conf_dir: /etc/zabbix
+zabbix_agent_conf_file: "{{ zabbix_agent_conf_dir }}/zabbix_agentd.conf"
+zabbix_agent_conf_directory: "{{ zabbix_agent_conf_dir }}/zabbix_agentd.d"
 
-zabbix_conf_dir: /etc/zabbix
-zabbix_conf_file: "{{ zabbix_conf_dir }}/zabbix_agentd.conf"
-zabbix_conf_include_directory: "{{ zabbix_conf_dir }}/zabbix_agentd.d"
+
+# MySQL
+zabbix_agent_mysql_defaults_file: "{{ zabbix_agent_conf_dir }}/mysql.cnf"
+
+
+# Rsyslog
+zabbix_agent_syslog_log_level:
+  - debug
+  - info
+  - notice
+  - warning
+  - err
+  - crit
+  - alert
+  - emerg

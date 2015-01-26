@@ -1,4 +1,4 @@
-# ansible-silpion-zabbix-client
+# ansible-zabbix-agent
 
 Install/configure zabbix agent
 
@@ -24,7 +24,12 @@ None.
 
     - hosts: all
       roles:
-         - { role: ansible-zabbix-client }
+         - { role: ansible-zabbix-agent }
+
+## TODOs
+
+* Verify rsyslog with syslog.yml.
+* Install log rotation configuration with syslog.yml.
 
 ## License
 
