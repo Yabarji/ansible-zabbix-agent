@@ -1,0 +1,17 @@
+---
+- name: Assert on Rsyslog monitoring relevant vars
+  tags: zabbix_agent
+  assert:
+    that:
+      - zabbix_agent_syslog_level in zabbix_agent_syslog_log_level
+
+- name: Install rsyslog configuration for zabbix
+  tags: zabbix_agent
+  sudo: yes
+  notify: service restart rsyslog
+  template:
+    src=rsyslog_zabbix.conf.j2
+    dest=/etc/rsyslog.d/zabbix.conf
+    owner=0
+    group=0
+    mode=0644

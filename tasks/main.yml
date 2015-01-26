@@ -67,6 +67,10 @@
   tags: zabbix_agent
   when: zabbix_agent_mysql_enable
 
+- include: syslog.yml
+  tags: zabbix_agent
+  when: zabbix_agent_syslog_enable
+
 
 - name: Ensure zabbix-agent service
   tags: zabbix_agent

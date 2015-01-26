@@ -26,6 +26,11 @@ None.
       roles:
          - { role: ansible-zabbix-agent }
 
+## TODOs
+
+* Verify rsyslog with syslog.yml.
+* Install log rotation configuration with syslog.yml.
+
 ## License
 
 Apache Version 2.0
