@@ -10,6 +10,5 @@
     zabbix_agent_mysql_login_user: root
     zabbix_agent_mysql_login_pass: whatever
     zabbix_agent_syslog_enable: true
-    zabbix_agent_syslog_zabbix_logfile: /var/log/4zabbix
   roles:
     - { role: ansible-zabbix-agent }

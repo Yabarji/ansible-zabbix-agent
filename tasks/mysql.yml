@@ -1,5 +1,5 @@
 ---
-- name: Assert on MySQL monitoring relevant vars
+- name: Assert on MySQL vars
   tags: zabbix_agent
   assert:
     that:
