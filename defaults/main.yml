@@ -44,5 +44,5 @@ zabbix_agent_allow_restart_rsyslog: true
 #   {{ zabbix_agent_syslog_zabbix_logile }}
 #   ... and alert on Syslog LEVEL
 
-zabbix_agent_syslog_level: warning
+zabbix_agent_syslog_configuration: ""
 zabbix_agent_syslog_zabbix_logfile: "/var/log/zabbix.log"

@@ -1,10 +1,5 @@
 ---
-- name: Assert on Rsyslog vars
-  tags: zabbix_agent
-  assert:
-    that:
-      - zabbix_agent_syslog_level in zabbix_agent_syslog_log_level
-
+# TODO fix me
 - name: Register rsyslog running
   tags: zabbix_agent
   register: zabbix_agent_rsyslog_running
@@ -15,7 +10,9 @@
 - name: Install rsyslog conf.d directory
   tags: zabbix_agent
   sudo: yes
-  when: zabbix_agent_rsyslog_running.rc == 0
+  when:
+    - zabbix_agent_rsyslog_running.rc == 0
+    - zabbix_agent_syslog_configuration not in (None, "")
   file:
     state=directory
     dest=/etc/rsyslog.d
@@ -26,7 +23,9 @@
 - name: Install rsyslog configuration for zabbix
   tags: zabbix_agent
   sudo: yes
-  when: zabbix_agent_rsyslog_running.rc == 0
+  when:
+    - zabbix_agent_rsyslog_running.rc == 0
+    - zabbix_agent_syslog_configuration not in (None, "")
   notify: service restart rsyslog
   template:
     src=rsyslog_zabbix.conf.j2
@@ -34,3 +33,5 @@
     owner=0
     group=0
     mode=0644
+#    validate='rsyslogd -N 1 -f %s'
+# TODO rsyslog validation returns 0 on Ubuntu/Trusty all the time

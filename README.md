@@ -8,13 +8,36 @@ None.
 
 ## Role Variables
 
-* ``zabbix_server_name``: Configure Zabbix server name (string, default: ``""``, **mandatory**)
-* ``zabbix_server_ip``: Configure Zabbix server name (string, default: ``""``, **mandatory**)
-* ``zabbix_customer_name``: Configure Zabbix customer name (string, default: ``""``, **mandatory**)
-* ``zabbix_customer_hash``: Configure Zabbix customer authentication hash (string, default: ``""``, **mandatory**)
-* ``zabbix_install_mysql``: Configure to manage MySQL monitoring with Zabbix (boolean, default: ``false``)
-* ``zabbix_log_directory``: Configure Zabbix log directory (string, default: ``/var/log/zabbix``)
-* ``zabbix_run_directory``: Configure Zabbix run directory (string, default: ``/var/run/zabbix``)
+* ``zabbix_agent_server_name``: Configure Zabbix server name (string, default: ``""``, **mandatory**)
+* ``zabbix_agent_server_ip``: Configure Zabbix server name (string, default: ``""``, **mandatory**)
+* ``zabbix_agent_customer_name``: Configure Zabbix customer name (string, default: ``""``, **mandatory**)
+* ``zabbix_agent_customer_hash``: Configure Zabbix customer authentication hash (string, default: ``""``, **mandatory**)
+* ``zabbix_agent_user_name``: Configure service user to run Zabbix as (string, default: ``zabbix``)
+* ``zabbix_agent_user_group``: Configure service group to run Zabbix as (string, default: ``zabbix``)
+* ``zabbix_agent_allow_restart``: Whether to allow to automatic restart the zabbix agent (boolean, default: ``true``)
+* ``zabbix_agent_log_directory``: Configure Zabbix log directory (string, default: ``/var/log/zabbix``)
+* ``zabbix_agent_run_directory``: Configure Zabbix run directory (string, default: ``/var/run/zabbix``)
+
+### MySQL configuration
+
+* ``zabbix_agent_mysql_enable``: Configure to manage MySQL monitoring with Zabbix (boolean, default: ``false``)
+* ``zabbix_agent_mysql_user``: Configure user for zabbix to connect to the MySQL server (string, default: ``zabbix``)
+* ``zabbix_agent_mysql_pass``: Configure password for user to connect to the MySQL server (string, default: ``""`` **MANDATORY**)
+* ``zabbix_agent_mysql_login_host``: Configure MySQL server host address (string, default: ``127.0.0.1``)
+* ``zabbix_agent_mysql_login_port``: Configure MySQL server host port (integer, default: ``3306``)
+
+### Syslog configuration
+
+* ``zabbix_agent_syslog_enable``: Configure to manage Syslog for monitoring with Zabbix (boolean, default: ``false``)
+* ``zabbix_agent_allow_restart_rsyslog``: Whether to allow automatic restarts the syslog server (boolean, default: ``true``)
+* ``zabbix_agent_syslog_configuration``: Configure Syslog events to store in {{ zabbix_agent_syslog_zabbix_logfile }} (string, default: ``""``)
+* ``zabbix_agent_syslog_zabbix_logfile``: Configure Syslog where to put data for Zabbix to fetch (string, default: ``/var/log/zabbix.log``)
+
+#### zabbix_agent_syslog_configuration
+
+Allows to configure rsyslog for facilities and log level. e.g.
+
+    *.err;auth.none;auth.crit
 
 ## Dependencies
 
@@ -29,6 +52,7 @@ None.
 ## TODOs
 
 * Verify rsyslog with syslog.yml.
+  * Fixup rsyslog management completely.
 * Install log rotation configuration with syslog.yml.
 
 ## License
