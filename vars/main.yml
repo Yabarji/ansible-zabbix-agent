@@ -10,15 +10,3 @@ zabbix_agent_conf_directory: "{{ zabbix_agent_conf_dir }}/zabbix_agentd.d"
 
 # MySQL
 zabbix_agent_mysql_defaults_file: "{{ zabbix_agent_conf_dir }}/mysql.cnf"
-
-
-# Rsyslog
-zabbix_agent_syslog_log_level:
-  - debug
-  - info
-  - notice
-  - warning
-  - err
-  - crit
-  - alert
-  - emerg

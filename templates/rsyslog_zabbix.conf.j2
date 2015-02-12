@@ -1,3 +1,4 @@
-$FileCreateMode 0644
+$FileCreateMode 0640
+$FileGroup {{ zabbix_agent_user_group }}
 
-*.{{ zabbix_agent_syslog_level }} {{ zabbix_agent_syslog_zabbix_logfile }}
+*.{{ zabbix_agent_syslog_configuration }} {{ zabbix_agent_syslog_zabbix_logfile }}
