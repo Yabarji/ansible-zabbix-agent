@@ -1,3 +1,10 @@
+# 0.5.0
+
+Mark Kusch (2):
+
+* Do not force the user to supply mysql login credentials
+* Allow to use implicit mysql account for root and allow to freeform configure rsyslog facitilities/level
+
 # 0.4.0
 
 Mark Kusch (8):
