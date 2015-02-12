@@ -28,8 +28,6 @@ zabbix_agent_mysql_pass: ""
 
 zabbix_agent_mysql_login_host: 127.0.0.1
 zabbix_agent_mysql_login_port: 3306
-zabbix_agent_mysql_login_user: ""
-zabbix_agent_mysql_login_pass: ""
 
 
 # Rsyslog

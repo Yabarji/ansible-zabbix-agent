@@ -3,8 +3,6 @@
   tags: zabbix_agent
   assert:
     that:
-      - zabbix_agent_mysql_login_user not in (None, "")
-      - zabbix_agent_mysql_login_pass not in (None, "")
       - zabbix_agent_mysql_pass not in (None, "")
 
 
@@ -28,8 +26,8 @@
     check_implicit_admin=yes
     login_host={{ zabbix_agent_mysql_login_host }}
     login_port={{ zabbix_agent_mysql_login_port }}
-    login_user={{ zabbix_agent_mysql_login_user }}
-    login_password={{ zabbix_agent_mysql_login_pass }}
+    login_user={{ zabbix_agent_mysql_login_user|default(omit) }}
+    login_password={{ zabbix_agent_mysql_login_pass|default(omit) }}
 
 - name: Install mysql defaults configuration
   tags: zabbix_agent
