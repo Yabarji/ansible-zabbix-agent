@@ -28,8 +28,6 @@ zabbix_agent_mysql_pass: ""
 
 zabbix_agent_mysql_login_host: 127.0.0.1
 zabbix_agent_mysql_login_port: 3306
-zabbix_agent_mysql_login_user: ""
-zabbix_agent_mysql_login_pass: ""
 
 
 # Rsyslog
@@ -46,5 +44,5 @@ zabbix_agent_allow_restart_rsyslog: true
 #   {{ zabbix_agent_syslog_zabbix_logile }}
 #   ... and alert on Syslog LEVEL
 
-zabbix_agent_syslog_level: warning
+zabbix_agent_syslog_configuration: ""
 zabbix_agent_syslog_zabbix_logfile: "/var/log/zabbix.log"
