@@ -1,0 +1,2 @@
+UserParameter=postfix.pfmailq,mailq | grep -v "Mail queue is empty" | grep -c '^[0-9A-Z]'
+UserParameter=postfix[*],/usr/local/bin/postfix-zabbix-stats $1

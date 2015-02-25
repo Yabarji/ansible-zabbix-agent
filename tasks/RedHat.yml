@@ -5,3 +5,11 @@
   yum:
     state=present
     name=http://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/rhel/{{ zabbix_agent_centos_version }}/{{ zabbix_agent_centos_arch }}/{{ zabbix_agent_reponame }}
+
+- name: Install epel repo
+  tags: zabbix_agent
+  sudo: yes
+  when: zabbix_agent_postfix_enable
+  yum:
+    state=present
+    name=http://dl.fedoraproject.org/pub/epel/{{ zabbix_agent_centos_version }}/{{ zabbix_agent_centos_arch }}/{{ zabbix_agent_epelname }}
