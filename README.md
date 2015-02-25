@@ -34,6 +34,7 @@ None.
 * ``zabbix_agent_syslog_zabbix_logfile``: Configure Syslog where to put data for Zabbix to fetch (string, default: ``/var/log/zabbix.log``)
 
 ### Postfix configuration
+
 * ``zabbix_agent_postfix_enable``: Configure to manage Postfix for monitoring with Zabbix (boolean, default: ``false``)
 
 #### zabbix_agent_syslog_configuration

@@ -9,7 +9,7 @@ LOGTAIL=/usr/sbin/logtail
 
 PFVALS=( 'received' 'delivered' 'forwarded' 'deferred' 'bounced' 'rejected' 'held' 'discarded' 'reject_warnings' 'bytes_received' 'bytes_delivered' )
 
-[ ! -e "${PFSTATSFILE}" ] && touch "${PFSTATSFILE}" && chown zabbix:zabbix "${PFSTATSFILE}"
+[ ! -e "${PFSTATSFILE}" ] && touch "${PFSTATSFILE}" && chown {{ zabbix_user_name }}.{{ zabbix_user_group }} "${PFSTATSFILE}"
 
 printvalues() {
   key=$1
