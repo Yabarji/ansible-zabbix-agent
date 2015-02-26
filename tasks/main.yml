@@ -71,6 +71,10 @@
   tags: zabbix_agent
   when: zabbix_agent_syslog_enable
 
+- include: postfix.yml
+  tags: zabbix_agent
+  when: zabbix_agent_postfix_enable
+
 
 - name: Ensure zabbix-agent service
   tags: zabbix_agent

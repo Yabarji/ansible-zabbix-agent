@@ -46,3 +46,6 @@ zabbix_agent_allow_restart_rsyslog: true
 
 zabbix_agent_syslog_configuration: ""
 zabbix_agent_syslog_zabbix_logfile: "/var/log/zabbix.log"
+
+# Postfix monitoring
+zabbix_agent_postfix_enable: false

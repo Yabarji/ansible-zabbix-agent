@@ -1,0 +1,27 @@
+---
+- name: Install Ansible Postfix dependencies
+  tags: zabbix_agent
+  sudo: yes
+  with_items: zabbix_agent_package_list_postfix
+  action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
+
+- name: Install postfix monitoring script
+  tags: zabbix_agent
+  sudo: yes
+  template:
+    src=postfix-zabbix-stats.j2
+    dest={{ zabbix_agent_bin_directory }}/postfix-zabbix-stats
+    owner=0
+    group=0
+    mode=0755
+
+- name: Install postfix monitoring configuration
+  tags: zabbix_agent
+  sudo: yes
+  notify: service restart zabbix-agent
+  template:
+    src=zabbix_agentd.d/userparameter_postfix.conf.j2
+    dest={{ zabbix_agent_conf_directory }}/userparameter_postfix.conf
+    owner=0
+    group=0
+    mode=0644
