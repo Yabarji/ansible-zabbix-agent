@@ -25,20 +25,17 @@ printvalues() {
   fi
 }
 
-if [ -n "$1" ]; then
-  key=$(echo ${PFVALS[@]} | grep -wo $1)
-  if [ -n "${key}" ]; then
-    value=$(grep -e "^${key};" "${PFSTATSFILE}" | cut -d ";" -f2)
-    echo "${value}"
-  else
-    rm "${TEMPFILE}"
-    exit 2
-  fi
+key=$(echo ${PFVALS[@]} | grep -wo $1)
+if [ -n "${key}" ]; then
+  value=$(grep -e "^${key};" "${PFSTATSFILE}" | cut -d ";" -f2)
+  echo "${value}"
 else
-  "${LOGTAIL}" -f"${MAILLOG}" -o"${PFOFFSETFILE}" | "${PFLOGSUMM}" -h 0 -u 0 --no_bounce_detail --no_deferral_detail --no_reject_detail --no_no_msg_size --no_smtpd_warnings > "${TEMPFILE}"
-  for i in "${PFVALS[@]}"; do
-    printvalues "$i"
-  done
+  rm "${TEMPFILE}"
+  exit 2
 fi
+"${LOGTAIL}" -f"${MAILLOG}" -o"${PFOFFSETFILE}" | "${PFLOGSUMM}" -h 0 -u 0 --bounce-detail=0 --deferral-detail=0 --reject-detail=0 --no_no_msg_size --smtpd-warning-detail=0 > "${TEMPFILE}"
+for i in "${PFVALS[@]}"; do
+  printvalues "$i"
+done
 
 rm "${TEMPFILE}"
