@@ -14,3 +14,10 @@
   service:
     state=restarted
     name=rsyslog
+
+- name: service reload apache2
+  tags: zabbix_agent
+  sudo: yes
+  service:
+    state=reloaded
+    name={{ zabbix_agent_apache2_service }} 

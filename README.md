@@ -37,6 +37,10 @@ None.
 
 * ``zabbix_agent_postfix_enable``: Configure to manage Postfix for monitoring with Zabbix (boolean, default: ``false``)
 
+### Apache2 configuration
+
+* ``zabbix_agent_apache2_enable``: Configure to manage Apache2 for monitoring with Zabbix (boolean, default: ``fa    lse``)
+
 #### zabbix_agent_syslog_configuration
 
 Allows to configure rsyslog for facilities and log level. e.g.

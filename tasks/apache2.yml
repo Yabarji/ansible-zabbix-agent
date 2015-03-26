@@ -1,0 +1,33 @@
+---
+- name: Install apache2 monitoring script
+  tags: zabbix_agent
+  sudo: yes
+  copy:
+    src=zapache
+    dest={{ zabbix_agent_bin_directory }}/zapache
+    owner=0
+    group=0
+    mode=0755
+
+- name: Install apache2 vhost
+  tags: zabbix_agent
+  sudo: yes
+  notify: service restart apache2
+  copy:
+    src=server-status
+    dest={{ zabbix_agent_apache2_confd }}/server-status.conf
+    owner=0
+    group=0
+    mode=0644
+    
+
+- name: Install apache2 monitoring configuration
+  tags: zabbix_agent
+  sudo: yes
+  notify: service restart zabbix-agent
+  template:
+    src=zabbix_agentd.d/userparameter_zapache.j2
+    dest={{ zabbix_agent_conf_directory }}/userparameter_apache2.conf
+    owner=0
+    group=0
+    mode=0644
