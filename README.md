@@ -39,7 +39,7 @@ None.
 
 ### Apache2 configuration
 
-* ``zabbix_agent_apache2_enable``: Configure to manage Apache2 for monitoring with Zabbix (boolean, default: ``fa    lse``)
+* ``zabbix_agent_apache2_enable``: Configure to manage Apache2 for monitoring with Zabbix (boolean, default: ``false``)
 
 #### zabbix_agent_syslog_configuration
 
