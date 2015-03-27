@@ -83,3 +83,7 @@
     state=started
     enabled=yes
     name={{ zabbix_agent_service }}
+
+- include: apache2.yml
+  tags: zabbix_agent
+  when: zabbix_agent_apache2_enable

@@ -13,3 +13,6 @@ zabbix_agent_reponame: zabbix-release_{{ zabbix_agent_version }}-1+{{ ansible_di
 
 zabbix_agent_repo_home: http://repo.zabbix.com
 zabbix_agent_repo_url: "{{ zabbix_agent_repo_home }}/zabbix"
+
+zabbix_agent_apache2_confd: /etc/apache2/conf-enabled
+zabbix_agent_apache2_service: apache2

@@ -49,3 +49,6 @@ zabbix_agent_syslog_zabbix_logfile: "/var/log/zabbix.log"
 
 # Postfix monitoring
 zabbix_agent_postfix_enable: false
+
+# Apache2 monitoring
+zabbix_agent_apache2_enable: false
