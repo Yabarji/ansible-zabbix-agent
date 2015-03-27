@@ -12,7 +12,7 @@
 - name: Install apache2 vhost
   tags: zabbix_agent
   sudo: yes
-  notify: service restart apache2
+  notify: service reload apache2
   copy:
     src=server-status
     dest={{ zabbix_agent_apache2_confd }}/server-status.conf
