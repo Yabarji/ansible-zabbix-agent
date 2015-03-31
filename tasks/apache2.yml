@@ -3,7 +3,7 @@
   tags: zabbix_agent
   assert:
     that:
-      - zabbix_agent_apache2_proto in ['http','https']
+      - zabbix_agent_apache2_proto in ('http','https')
 
 - name: Install apache2 monitoring script
   tags: zabbix_agent
