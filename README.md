@@ -40,6 +40,7 @@ None.
 ### Apache2 configuration
 
 * ``zabbix_agent_apache2_enable``: Configure to manage Apache2 for monitoring with Zabbix (boolean, default: ``false``)
+* ``zabbix_agent_apache2_proto``: Which protocol to use for Apache2 status requests(one of either ``http`` or ``https``, default: ``http``)
 
 #### zabbix_agent_syslog_configuration
 

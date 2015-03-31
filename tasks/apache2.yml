@@ -1,8 +1,14 @@
 ---
+- name: Assert valid protocol choice
+  tags: zabbix_agent
+  assert:
+    that:
+      - zabbix_agent_apache2_proto in ['http','https']
+
 - name: Install apache2 monitoring script
   tags: zabbix_agent
   sudo: yes
-  copy:
+  template:
     src=zapache
     dest={{ zabbix_agent_bin_directory }}/zapache
     owner=0

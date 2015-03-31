@@ -53,7 +53,7 @@ function usage()
 
 if [[ $# ==  1 ]];then
   #Agent Mode
-  STATUS_URL="http://localhost/server-status?auto"
+  STATUS_URL="{{ zabbix_agent_apache2_proto }}://localhost/server-status?auto"
   CASE_VALUE="$1"
 elif [[ $# == 2 ]];then
   #External Script Mode

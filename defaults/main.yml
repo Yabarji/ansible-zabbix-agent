@@ -52,3 +52,4 @@ zabbix_agent_postfix_enable: false
 
 # Apache2 monitoring
 zabbix_agent_apache2_enable: false
+zabbix_agent_apache2_proto: 'http'
