@@ -9,7 +9,7 @@
   tags: zabbix_agent
   sudo: yes
   template:
-    src=zapache
+    src=zapache.j2
     dest={{ zabbix_agent_bin_directory }}/zapache
     owner=0
     group=0
